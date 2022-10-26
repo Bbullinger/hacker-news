@@ -84,8 +84,8 @@ class StoryList {
       token: user.loginToken,
       story: newStory,
     });
-    //({ storyId, title, author, url, username, createdAt }) {
-    return new Story();
+    //reponse.data.story format:({ storyId, title, author, url, username, createdAt })
+    return new Story(response.data.story);
   }
 }
 
