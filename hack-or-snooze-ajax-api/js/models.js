@@ -92,7 +92,6 @@ class StoryList {
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  */
-
 class User {
   /** Make user instance from obj of user data and a token:
    *   - {username, name, createdAt, favorites[], ownStories[]}
@@ -144,7 +143,6 @@ class User {
   }
 
   /** Login in user with API, make User instance & return it.
-
    * - username: an existing user's username
    * - password: an existing user's password
    */
@@ -198,5 +196,18 @@ class User {
       console.error("loginViaStoredCredentials failed", err);
       return null;
     }
+  }
+  // allow user to "favorite" a story, adding the story to a private list
+  async addOrRemoveFavorite() {
+    const $story = $(e.target.closest("li"));
+    const $storyId = storyList.stories[indexOf($story)].storyId;
+
+    console.log($storyId);
+    const method = this.favorites.indexOf($storyId) === -1 ? "DELETE" : "POST";
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${$storyId}`,
+      method: method,
+      token: this.loginToken,
+    });
   }
 }

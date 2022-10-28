@@ -11,6 +11,8 @@ const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
 const $addStoryForm = $("#addStory-form");
 
+const $addStorySubmit = $("#addStorySubmit");
+
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");

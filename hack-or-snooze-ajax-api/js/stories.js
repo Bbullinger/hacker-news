@@ -25,6 +25,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        <input type="checkbox" class="favorite-check">
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -50,3 +51,17 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+//Collect data from the addStoryForm and submit it to the API
+async function submitStory(e) {
+  e.preventDefault();
+  const author = $("#addStory-author").val();
+  const title = $("#addStory-title").val();
+  const url = $("#addStory-url").val();
+  const newStory = { author, title, url };
+
+  await storyList.addStory(currentUser, newStory);
+  location.reload();
+}
+
+$addStorySubmit.on("click", submitStory);
