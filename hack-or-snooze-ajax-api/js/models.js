@@ -197,8 +197,9 @@ class User {
       return null;
     }
   }
+
   // allow user to "favorite" a story, adding the story to a private list
-  async addOrRemoveFavorite() {
+  async addOrRemoveFavorite(e) {
     const $story = $(e.target.closest("li"));
     const $storyId = storyList.stories[indexOf($story)].storyId;
 
